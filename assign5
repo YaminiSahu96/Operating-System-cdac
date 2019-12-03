@@ -1,0 +1,67 @@
+1. Run the firefox with highest priority.
+ nice -n -20 firefox
+
+2. Run the firefox with lowest priority.
+nice -n 19 firefox
+
+
+3. Change the running firefox process priority to 10
+//CHEKING PRIORITY
+$ ps -eo pid,ppid,stat,cmd,ni | grep -w firefox
+ 3599     1 Sl+  /usr/lib/firefox/firefox -n   0
+
+$ renice -n 10 3599
+3599 (process ID) old priority 0, new priority 10
+//New Priority
+$ ps -eo pid,ppid,stat,cmd,ni | grep -w firefox
+ 3599     1 SNl+ /usr/lib/firefox/firefox -n  10
+
+
+4. Write a multithreaded program in C. Both thread should perform the increment operation on a
+variable by 1.
+
+#include<stdio.h>
+#include<unistd.h>
+#include<sys/types.h>
+#include<sys/wait.h>
+#include<pthread.h>
+
+int count=0;
+
+void *func1(void *t1)
+{
+        printf("\ni m inside thread1\n ")       ;
+        for(int i=0;i<50;i++)
+        {
+        //      i=i+1;
+                count++;
+        }
+        printf("\ncount=%d",count);
+}
+void  *func2(void *t2)
+{
+        printf("\ni m inside thread2\n ")       ;
+        for(int i=0;i<50;i++)
+        {
+        //      i=i+1;
+                count++;
+        }
+        printf("\ncount=%d",count);
+}
+int main()
+{
+        pthread_t tid1,tid2;
+        pthread_create(&tid1,NULL,func1,NULL);
+        pthread_create(&tid2,NULL,func2,NULL);
+        pthread_join(tid1,NULL);
+        return 0;
+}
+
+
+5. Write a program and do the following :using sigaction API, handle SIGINT, SIGTERM, SIGQUIT,
+SIGSTOP,SIGTSTP and SIGKILL. Install dummy handlers for the mentioned signals Using
+sigaction() system call API !!!
+
+
+6. Try to kill init process (with pid 1) from your command line(using kill command) or using kill()
+system call inside one of your processes.what is the result ? comment on the same.

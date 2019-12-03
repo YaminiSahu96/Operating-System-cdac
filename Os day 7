@@ -1,0 +1,106 @@
+1. Write a program to copy string from one process to another using unnamed pipe.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+
+int main(void)
+{
+        int     fd[2];
+        pid_t   childpid;
+        char    string[100];
+        char    readbuffer[100];
+
+        pipe(fd);
+
+        if((childpid = fork()) == -1)
+        {
+                perror("fork");
+                exit(1);
+        }
+
+        if(childpid == 0)
+        {
+                /* Child process closes up input side of pipe */
+                close(fd[0]);
+printf("\nEnter string in 1st process: ");
+fgets(string,99,stdin);
+                /* Send "string" through the output side of pipe */
+                write(fd[1], string, sizeof(string));
+                exit(0);
+        }
+        else
+        {
+                /* Parent process closes up output side of pipe */
+                close(fd[1]);
+
+                /* Read in a string from the pipe */
+                read(fd[0], readbuffer, sizeof(readbuffer));
+                printf("Received string in 2nd process: %s", readbuffer);
+        }
+
+        return 0;
+}
+
+
+2. Write a program to copy your name,prn,phone no from one process to another process using
+named pipe.
+
+
+#include<stdio.h>
+#include<sys/types.h>
+#include<sys/wait.h>
+#include<unistd.h>
+#include<string.h>
+#include<stdlib.h>
+#include<fcntl.h>
+
+int main()	//writer
+{
+	int fd;
+	//char myfifo="/tmp/fifo";
+	char str[50];
+
+	int rd=mkfifo("named_pipe",0666);
+	fd=open("named_pipe",O_WRONLY);
+	
+	printf("\n enter a string:\n");
+	scanf("%s",str);
+
+	write(fd,str,sizeof(str));
+		close(fd);
+	
+	//unlink(myfifo);
+	return 0;
+}
+
+#include<stdio.h>
+#include<sys/types.h>
+#include<sys/wait.h>
+#include<unistd.h>
+#include<string.h>
+#include<stdlib.h>
+#include<fcntl.h>
+#include<sys/stat.h>
+
+int main()  //reader
+{
+	int fd;
+	//char *myfifo="/tmp/myfifo";
+	char buf[100];
+
+	fd=open("named_pipe",O_RDONLY);	
+	read(fd,buf,sizeof(buf));
+	
+	printf("\n message in the buffer:%s",buf);
+	printf("\n");
+	close(fd);
+
+	return 0;
+}
+
+
+

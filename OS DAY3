@@ -1,0 +1,223 @@
+1.Write a script to perform the following
+a) To count no.of processes which are running or ready in the system (Hint:- ps -e
+-o pid,ppid,cmd,stat|grep )
+
+
+#!/bin/bash
+
+echo "` ps -aux |wc |tr -s ' ' |cut -f 2 -d " " `"
+
+
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ps -aux |wc |tr -s ' ' |cut -f 2 -d " "
+332
+
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ps -e -o pid,ppid,cmd,stat|grep -e stat 
+ 5448  2228 ps -e -o pid,ppid,cmd,stat  R+
+ 5449  2228 grep --color=auto -e stat   S+
+
+
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ps -e -o pid,ppid,cmd,stat|grep -e fun*
+ 1906  1742 /usr/lib/gvfs/gvfsd-fuse /r Sl
+ 5458  2228 grep --color=auto -e fun*   S+
+
+b) List out foreground processes running in the system (ps suffix + in the state for
+the foreground processes)
+
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ps -e -o pid,ppid,cmd,stat|grep -e +
+ 1173  1152 /usr/lib/gdm3/gdm-wayland-s Ssl+
+ 1177  1173 /usr/lib/gnome-session/gnom Sl+
+ 1183  1177 /usr/bin/gnome-shell        Sl+
+ 1207  1183 /usr/bin/Xwayland :1024 -ro Sl+
+ 1280  1177 /usr/lib/gnome-settings-dae Sl+
+ 1283  1177 /usr/lib/gnome-settings-dae Sl+
+ 1286  1177 /usr/lib/gnome-settings-dae Sl+
+ 1288  1177 /usr/lib/gnome-settings-dae Sl+
+ 1291  1177 /usr/lib/gnome-settings-dae Sl+
+ 1292  1177 /usr/lib/gnome-settings-dae Sl+
+ 1293  1177 /usr/lib/gnome-settings-dae Sl+
+ 1298  1177 /usr/lib/gnome-settings-dae Sl+
+ 1299  1177 /usr/lib/gnome-settings-dae Sl+
+ 1301  1177 /usr/lib/gnome-settings-dae Sl+
+ 1303  1177 /usr/lib/gnome-settings-dae Sl+
+ 1306  1177 /usr/lib/gnome-settings-dae Sl+
+ 1309  1177 /usr/lib/gnome-settings-dae Sl+
+ 1313  1177 /usr/lib/gnome-settings-dae Sl+
+ 1317  1177 /usr/lib/gnome-settings-dae Sl+
+ 1321  1177 /usr/lib/gnome-settings-dae Sl+
+ 1323  1177 /usr/lib/gnome-settings-dae Sl+
+ 1760  1456 /usr/lib/gdm3/gdm-x-session Ssl+
+ 1762  1760 /usr/lib/xorg/Xorg vt2 -dis Sl+
+ 1771  1760 /usr/lib/gnome-session/gnom Sl+
+ 1894  1771 /usr/bin/gnome-shell        Sl+
+ 2012  1771 /usr/lib/gnome-settings-dae Sl+
+ 2013  1771 /usr/lib/gnome-settings-dae Sl+
+ 2015  1771 /usr/lib/gnome-settings-dae Sl+
+ 2016  1771 /usr/lib/gnome-settings-dae Sl+
+ 2017  1771 /usr/lib/gnome-settings-dae Sl+
+ 2020  1771 /usr/lib/gnome-settings-dae Sl+
+ 2024  1771 /usr/lib/gnome-settings-dae Sl+
+ 2027  1771 /usr/lib/gnome-settings-dae Sl+
+ 2036  1771 /usr/lib/gnome-settings-dae Sl+
+ 2048  1771 /usr/lib/gnome-settings-dae Sl+
+ 2049  1771 /usr/lib/gnome-settings-dae Sl+
+ 2050  1771 /usr/lib/gnome-settings-dae Sl+
+ 2055  1771 /usr/lib/gnome-settings-dae Sl+
+ 2057  1771 /usr/lib/gnome-settings-dae Sl+
+ 2064  1771 /usr/lib/gnome-settings-dae Sl+
+ 2067  1771 /usr/lib/gnome-settings-dae Sl+
+ 2068  1771 /usr/lib/gnome-settings-dae Sl+
+ 2097     1 /usr/lib/gnome-settings-dae Sl+
+ 2109  1771 /usr/lib/gnome-disk-utility Sl+
+ 2110  1771 nautilus-desktop            Sl+
+ 4470     1 /usr/lib/firefox/firefox -n Sl+
+ 4535  4470 /usr/lib/firefox/firefox -c Sl+
+ 4593  4470 /usr/lib/firefox/firefox -c Sl+
+ 4647  1771 /usr/bin/gnome-software --g SLl+
+ 4650  1771 update-notifier             Sl+
+ 4793  1771 /usr/lib/deja-dup/deja-dup- Sl+
+ 5141  4470 /usr/lib/firefox/firefox -c Sl+
+ 5221  4470 /usr/lib/firefox/firefox -c Sl+
+ 5470  2228 ps -e -o pid,ppid,cmd,stat  R+
+ 5471  2228 grep --color=auto -e +      S+
+
+
+#!/bin/bash
+
+
+
+echo "`ps -e -o pid,ppid,cmd,stat|grep -e +`"
+~                                                                     
+~                                               
+
+
+c) List out all processes whose parent is init
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ps -e -o ppid,cmd | grep '^ *1 '#!/bin/bash
+
+#echo "` ps -aux |wc |tr -s ' ' |cut -f 2 -d " " `"
+
+#echo "`ps -e -o pid,ppid,cmd,stat|grep -e +`"
+
+echo "`ps -e -o ppid,cmd | grep '^ *1 '`"
+
+    1 /lib/systemd/systemd-journald
+    1 /lib/systemd/systemd-udevd
+    1 /lib/systemd/systemd-resolved
+    1 /lib/systemd/systemd-timesyncd
+    1 /usr/lib/accountsservice/accounts-daemon
+    1 /usr/sbin/irqbalance --foreground
+    1 /usr/lib/bluetooth/bluetoothd
+    1 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+    1 /usr/sbin/NetworkManager --no-daemon
+    1 /usr/sbin/acpid
+    1 /usr/sbin/ModemManager --filter-policy=strict
+    1 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+    1 /usr/sbin/thermald --no-daemon --dbus-enable
+    1 avahi-daemon: running [dac-Veriton-M200-H310-34.local]
+    1 /lib/systemd/systemd-logind
+    1 /usr/lib/udisks2/udisksd
+    1 /usr/sbin/cron -f
+    1 /sbin/wpa_supplicant -u -s -O /run/wpa_supplicant
+    1 /usr/sbin/rsyslogd -n
+    1 /usr/lib/snapd/snapd
+    1 /usr/lib/policykit-1/polkitd --no-debug
+    1 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+    1 /usr/sbin/gdm3
+    1 /lib/systemd/systemd --user
+    1 /usr/lib/upower/upowerd
+    1 /usr/lib/rtkit/rtkit-daemon
+    1 /usr/lib/ibus/ibus-x11 --kill-daemon
+    1 /usr/lib/x86_64-linux-gnu/boltd
+    1 /usr/lib/packagekit/packagekitd
+    1 /usr/lib/colord/colord
+    1 /usr/bin/whoopsie -f
+    1 /usr/sbin/kerneloops --test
+    1 /usr/sbin/kerneloops
+    1 /lib/systemd/systemd --user
+    1 /usr/bin/gnome-keyring-daemon --daemonize --login
+    1 /usr/bin/pulseaudio --start --log-target=syslog
+    1 /usr/lib/ibus/ibus-x11 --kill-daemon
+    1 /usr/lib/gnome-settings-daemon/gsd-printer
+    1 /usr/lib/firefox/firefox -new-window
+    1 /usr/lib/fwupd/fwupd
+    1 /usr/sbin/cupsd -l
+    1 /usr/sbin/cups-browsed
+
+
+#!/bin/bash
+
+
+echo "`ps -e -o ppid,cmd | grep '^ *1 '`"
+
+
+
+2.Write a menu based script to perform following string operations
+a) To find length of a string
+
+#!/bin/bash
+ str=" linux is very funny language"
+ len=`echo $str|wc -c` #print the byte counts
+echo "length of $str=$len"
+ echo "\n" 
+len=`echo $str|wc -m`  #print the character counts
+echo "length of $str=$len"
+
+
+
+
+
+b) Copying string
+
+#!/bin/bash
+ str=" linux is very funny language"
+ 
+echo "string = $str"
+ "
+len=${#str}
+echo $len
+s=${str:1:len}
+echo $s
+
+
+
+c) Concatenation of strings
+
+#!/bin/bash
+ 
+ str="hello"
+ 
+echo "string = $str"
+ 
+len=${#str}
+echo $len
+
+str1="$str world!"
+echo $str1
+
+
+
+
+d) Comparison of two strings
+#!/bin/bash
+
+echo "enter two strings "
+read str1
+read str2
+
+if [ $str1 == $str2 ]
+then
+        echo " strings match "
+else
+        echo "strings doesn't match"
+fi
+
+
+
+e) Reversing a string
+
+
+
+3.Write a script to check whether given argument is a regular file or directory
+4.To check given year is leap or not
+5.Write a script to create 10 directories, say exam1,exam2,...,exam10 Report
+error if a directory/file exists with same name.
+6.Write a script to check each entry of a directory is a file or directory.

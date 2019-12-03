@@ -1,0 +1,229 @@
+1
+Create some files and sub directories.
+a) display files row wise, column wise, 1 per row
+ls  //rowwise
+ls -1 //column wise
+
+
+b) sort the files in ascending, descending order
+ls -1 //ascending(by default)
+$ ls -1 -s
+
+ls -1 -r //descending
+
+c) Create some hidden files and sub directories and display them using “ls -
+a”
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ vi .yamini.txt
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ls
+a  c  y
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ls -a
+.  ..  a  c  y  .yamini.txt
+
+d) Change time stamp of some files and directories using touch command
+and display the files using ls -t ls -rt
+$ touch a.txt 
+$ ls -lt
+$ ls -lrt
+
+e) Recursive display contents of your home directory.
+$cd ~  //switching to home directory
+$ls -R //recursively display home directories
+
+
+f) display all attributes of files and directories using ls -l
+
+$ ls -l
+
+
+g) display attributes of a directory using ls -l
+
+
+2.
+Create three directory a b and c and create a.txt,b.txt and c.txt
+  in each directory respectively and then copy c directory into the a.
+
+mkdir a
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ mkdir b
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ mkdir c
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ls
+a  b  c
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ cd a
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/a$ a.txt
+a.txt: command not found
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/a$ vi a.txt
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/a$ cd ..
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ cd b
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/b$ ls
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/b$ vi b.txt
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/b$ vim b.txt
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/b$ cd ..
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ls
+a  b  c
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ cd c
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/c$ ls
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/c$ vim c.txt
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/c$ cd ...
+bash: cd: ...: No such file or directory
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/c$ cd ..
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ cd a
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/a$ vim a.txt
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/a$ cd ..
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ls
+a  b  c
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ cd d
+bash: cd: d: No such file or directory
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ mkdir d
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ls
+a  b  c  d
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ cd a
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/a$ ls
+a.txt
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/a$ 
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/a$ cd ..
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ls
+a  b  c  d
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ rm d
+rm: cannot remove 'd': Is a directory
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ rm d
+rm: cannot remove 'd': Is a directory
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ rm rf d
+rm: cannot remove 'rf': No such file or directory
+rm: cannot remove 'd': Is a directory
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ rm -rf d
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ls
+a  b  c
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ cp -r c a
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ ls
+a  b  c
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ cd a
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/a$ ls
+a.txt  c
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/a$ cd c
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os/a/c$ ls
+c.txt
+
+
+3.
+ Move Directory b to c.
+
+$ mv  b c
+
+4
+  Create alias of ls -lh command to your name.
+
+alias karan=ls -lh
+
+5
+ Change Directory name a to cdac.
+$ mv a cdac
+
+
+
+
+
+6
+ Create five files file1.txt , file2.txt ,file3.txt file4.txt and
+  file5.txt with some text inside it. Search for 's' character
+  inside all the files using grep command.
+  Also Use cat to view all file content together.
+
+touch file1.txt  file2.txt  file3.txt  file4.txt  file5.txt 
+grep "s" *
+$ cat *
+
+
+7
+Create file.txt using cat and edit that using nano editor.
+
+$ cat > file11.txt
+echo "hi ! how r u?"
+echo "i m fine"
+echo "what r u doing"
+
+$ nano file11.txt 
+
+
+8
+Create 5 empty files using touch command.
+
+$ touch f1.txt f2.txt f3.txt f4.txt f5.txt
+
+
+9
+ Remove previously created directory a , b and c.
+
+$ rm -rf a c
+$ls
+
+
+10
+Explore the following commands with various options, refer man pages for
+further help a) date b) cal c) bc d) echo e) who f) whoami g) logname g) uname h)
+seq i) clear
+
+a)date-date - print or set the system date and time
+b) cal- cal, ncal — displays a calendar and the date of Easter
+c)bc-bc - An arbitrary precision calculator language
+
+d) echo - display a line of text
+e)who - show who is logged on
+
+f)whoami - print effective userid
+g)logname - print user´s login name
+h) uname - print system information
+
+h)seq - print a sequence of numbers
+i)clear - clear the terminal screen
+
+
+
+11
+Create a file with some content using vi editor
+a) Display the file using cat command
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ vi emp.txt
+dac@dac-Veriton-M200-H310:~/CDAC/claasswork/os$ cat emp.txt
+echo"emp id-111"
+echo "ename-suresh"
+echo "dept-sales"
+echo "deptname-analyst"
+echo "did-444"
+
+b) Display line no.s along with content
+1 echo"emp id-111"
+  2 echo "ename-suresh"
+  3 echo "dept-sales"
+  4 echo "deptname-analyst"
+  5 echo "did-444"
+
+:set nu
+~                    
+c) Display the file in reverse order using tac
+$ tac   emp.txt
+
+echo "did-444"
+echo "deptname-analyst"
+echo "dept-sales"
+echo "ename-suresh" 
+echo "emp id-111" 
+
+
+d) Combine multiple files using cat command
+$ cat * >file10
+$ cat file10
+echo "hi ! how r u?"
+echo "i m fine"
+echo "what r u doing"
+echo "dtfdghhnjgjkyhgfdfgdryhjghjuk"
+echo "hi i m here @ file 1"
+echo "hi i m here @ file2"
+echo "hi i m here @ file 3"
+echo "kaisan baaa"
+
+echo "thik baa tum kaisan baa"
+
+echo "hi i m here @ sys 58"
+echo "how r u?"
+echo "i m @ os lab"
+echo "doing multiple commands"
+echo "fgdghfhjghjgsxdfs"
+
